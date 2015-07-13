@@ -4,6 +4,8 @@
 
 # DJJavaInsertion
 Use javascript to run native iOS code. Inspired by [NativeBridge](https://github.com/ochameau/NativeBridge).
+`DJJavaInsertion` allows you to run parts of your application from JavaScript allowing you to dynamically change the JavaScript which can let you modify the behaviour of an app without having to wait for the Apple approval process.
+ Eg. Say you have some network calls that could possibly change in the future. Pass them through `DJJavaInsertion` and implment a way to dynamically update your html that contains the JavaScript. Allowing you to change the network calls without needing to update your app.
 
 ## Installation
 - Add the `DJInsertionFolder` to your project

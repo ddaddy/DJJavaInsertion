@@ -57,7 +57,6 @@ static int _alertCallbackId;
         // Input field is already a dictionary
     }
     
-//    DJJavaFunction_UIAlert *func = [[DJJavaFunction_UIAlert alloc] init];
     [func showAlertWithTitle:title message:message buttons:buttons inputField:inputField callbackId:callbackId];
     
     return func;
