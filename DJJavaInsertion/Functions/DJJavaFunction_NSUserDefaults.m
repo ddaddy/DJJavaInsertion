@@ -96,3 +96,43 @@
 }
 
 @end
+
+@implementation DJJavaFunction_NSUserDefaultsDelete
+
++ (NSString *)functionName
+{
+    return @"deleteUserDefaultsStringForKey";
+}
+
++ (instancetype)processFunctionWithArgs:(NSArray *)args callbackId:(int)callbackId delegate:(id<DJJavaFunctionDelegate>)delegate
+{
+    DJJavaFunction_NSUserDefaultsDelete *func = [[DJJavaFunction_NSUserDefaultsDelete alloc] init];
+    func.delegate = delegate;
+    
+    if ([args count] != 1)
+    {
+        NSString *errorStr = [NSString stringWithFormat:@"ERROR:%@-Invalid number of arguments", [self functionName]];
+        
+        [func returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[errorStr]];
+        
+        return nil;
+    }
+    
+    NSString *key = args[0];
+    
+    [func deleteUserDefaultsForKey:key callbackId:callbackId];
+    
+    return func;
+}
+
+- (void)deleteUserDefaultsForKey:(NSString *)key
+                      callbackId:(int)callbackId
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // Callback
+    [self returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[]];
+}
+
+@end

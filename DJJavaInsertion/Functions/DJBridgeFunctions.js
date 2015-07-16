@@ -36,6 +36,18 @@ function readUserDefaultsForKey(key, callback)
 }
 
 /**
+ * deleteUserDefaultsForKey
+ * Delete an object from NSUserDefaults
+ * @param key The key for the store to delete
+ * @param callback A callback function to perform when complete (optional)
+ * @return Nothing
+ */
+function deleteUserDefaultsForKey(key, callback)
+{
+    NativeBridge.call('deleteUserDefaultsStringForKey', [key], callback);
+}
+
+/**
  * showAlert
  * Display either a UIAlertView or UIAlertController (Depending on iOS version)
  * @param title The title to display

@@ -61,6 +61,10 @@
     {
         [DJJavaFunction_NSUserDefaultsRead processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
+    else if ([DJJavaFunction_NSUserDefaultsDelete isFunction:_functionName])
+    {
+        [DJJavaFunction_NSUserDefaultsDelete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+    }
     else if ([DJJavaFunction_UIAlert isFunction:_functionName])
     {
         [DJJavaFunction_UIAlert processFunctionWithArgs:_args callbackId:_callbackId delegate:self];

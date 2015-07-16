@@ -8,14 +8,14 @@
 
 #import "DJJavaFunction.h"
 
-//@interface DJJavaFunction_NSUserDefaults : DJJavaFunction
-//
-//@end
-
 @interface DJJavaFunction_NSUserDefaultsRead : DJJavaFunction
 
 @end
 
 @interface DJJavaFunction_NSUserDefaultsWrite : DJJavaFunction
+
+@end
+
+@interface DJJavaFunction_NSUserDefaultsDelete : DJJavaFunction
 
 @end
