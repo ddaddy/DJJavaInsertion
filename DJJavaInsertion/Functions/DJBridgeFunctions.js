@@ -71,3 +71,14 @@ function complete(string)
 {
 	NativeBridge.call('complete', [string]);
 }
+
+/**
+ * throwError
+ * End's the JS and throws an iOS NSError
+ * @param code Error code
+ * @param description Error description
+ */
+function throwError(code, description)
+{
+    NativeBridge.call('throwError', [code, description]);
+}

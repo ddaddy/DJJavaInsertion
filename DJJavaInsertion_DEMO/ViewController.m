@@ -65,6 +65,44 @@
              default:
                  break;
          }
+         
+         switch (completionReason)
+         {
+             case DJJavaInsertionCompleted_JSCompleteCall:
+             {
+                 // JS has successfully completed
+                 _webView = nil;
+                 NSLog(@"JavaScript has completed running with string: %@", jsonresult);
+             }
+                 break;
+                 
+             case DJJavaInsertionCompleted_JSThrewError:
+             {
+                 NSData *jsonData = [jsonresult dataUsingEncoding:NSUTF8StringEncoding];
+                 NSArray *payload = [NSJSONSerialization
+                                     JSONObjectWithData:jsonData
+                                     options:kNilOptions
+                                     error:nil];
+                 NSError *error = [NSError errorWithDomain:payload[1] code:[payload[0] integerValue] userInfo:@{NSLocalizedDescriptionKey: payload[1]}];
+                 NSLog(@"JavaScript has completed running with error: %@", error);
+             }
+                 break;
+                 
+             case DJJavaInsertionCompleted_NoMoreFunctions:
+             {
+                 // Possibly ended early as not had msg from JS to complete
+                 _webView = nil;
+                 NSLog(@"JavaScript has run out of functions to run");
+             }
+                 break;
+                 
+             case DJJavaInsertionCompleted_FunctionComplete:
+             default:
+             {
+                 // Do nothing as there should be more functions to complete
+             }
+                 break;
+         }
      }];
 }
 

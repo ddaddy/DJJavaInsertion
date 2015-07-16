@@ -11,6 +11,7 @@
 #import "DJJavaFunction_NSLog.h"
 #import "DJJavaFunction_UIAlert.h"
 #import "DJJavaFunction_NSUserDefaults.h"
+#import "DJJavaFunction_ThrowError.h"
 
 @interface DJJavaProcessFunction () <DJJavaFunctionDelegate>
 @property (nonatomic, strong)   NSString*                           functionName;
@@ -73,6 +74,10 @@
     {
         [DJJavaFunction_Complete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
+    else if ([DJJavaFunction_ThrowError isFunction:_functionName])
+    {
+        [DJJavaFunction_ThrowError processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+    }
     else
     {
         NSLog(@"Unimplemented method '%@'", _functionName);
@@ -91,7 +96,7 @@
               reason:(DJJavaInsertionCompletedReason)reason
                 args:(NSArray *)args
 {
-    if ((!callbackId || callbackId == 0) && reason != DJJavaInsertionCompleted_JSCompleteCall)
+    if ((!callbackId || callbackId == 0) && reason != DJJavaInsertionCompleted_JSCompleteCall && reason != DJJavaInsertionCompleted_JSThrewError)
     {
         // No callbackId or no more callbacks, so end here.
         [self returnResultAfterDelay:@[@(DJJavaInsertionCompleted_NoMoreFunctions)]];

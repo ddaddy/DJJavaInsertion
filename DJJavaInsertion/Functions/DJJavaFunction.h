@@ -12,7 +12,8 @@ typedef enum DJJavaInsertionCompletedReason : NSUInteger
 {
     DJJavaInsertionCompleted_FunctionComplete       = 0,
     DJJavaInsertionCompleted_NoMoreFunctions        = 1,
-    DJJavaInsertionCompleted_JSCompleteCall         = 2
+    DJJavaInsertionCompleted_JSCompleteCall         = 2,
+    DJJavaInsertionCompleted_JSThrewError           = 3
 } DJJavaInsertionCompletedReason;
 
 @protocol DJJavaFunctionDelegate <NSObject>

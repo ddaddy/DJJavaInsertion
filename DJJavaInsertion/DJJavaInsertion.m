@@ -145,6 +145,7 @@
             
         case DJJavaInsertionCompleted_NoMoreFunctions:
         case DJJavaInsertionCompleted_JSCompleteCall:
+        case DJJavaInsertionCompleted_JSThrewError:
         default:
             break;
     }
