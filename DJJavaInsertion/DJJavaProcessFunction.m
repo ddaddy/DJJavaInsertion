@@ -120,9 +120,10 @@
         resultArrayString = [NSString stringWithFormat:@"NativeBridge.resultForCallback(%d,%@);",callbackId,resultArrayString];
     }
     
-    [self performSelector:@selector(returnResultAfterDelay:) withObject:@[@(reason),
-                                                                          resultArrayString]
-               afterDelay:0];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self returnResultAfterDelay:@[@(reason),
+                                       resultArrayString]];
+    });
 }
 
 -(void)returnResultAfterDelay:(NSArray*)results
