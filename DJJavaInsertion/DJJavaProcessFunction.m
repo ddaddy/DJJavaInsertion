@@ -18,6 +18,7 @@
 @property (nonatomic)           int                                 callbackId;
 @property (nonatomic, strong)   NSArray*                            args;
 @property (nonatomic, weak)     id<DJJavaProcessFunctionDelegate>   delegate;
+@property (nonatomic, strong)   DJJavaFunction*                     function;
 @end
 
 @implementation DJJavaProcessFunction
@@ -52,31 +53,31 @@
     }
     else if ([DJJavaFunction_NSLog isFunction:_functionName])
     {
-        [DJJavaFunction_NSLog processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_NSLog processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_NSUserDefaultsWrite isFunction:_functionName])
     {
-        [DJJavaFunction_NSUserDefaultsWrite processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_NSUserDefaultsWrite processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_NSUserDefaultsRead isFunction:_functionName])
     {
-        [DJJavaFunction_NSUserDefaultsRead processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_NSUserDefaultsRead processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_NSUserDefaultsDelete isFunction:_functionName])
     {
-        [DJJavaFunction_NSUserDefaultsDelete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_NSUserDefaultsDelete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_UIAlert isFunction:_functionName])
     {
-        [DJJavaFunction_UIAlert processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_UIAlert processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_Complete isFunction:_functionName])
     {
-        [DJJavaFunction_Complete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_Complete processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else if ([DJJavaFunction_ThrowError isFunction:_functionName])
     {
-        [DJJavaFunction_ThrowError processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
+        self.function = [DJJavaFunction_ThrowError processFunctionWithArgs:_args callbackId:_callbackId delegate:self];
     }
     else
     {

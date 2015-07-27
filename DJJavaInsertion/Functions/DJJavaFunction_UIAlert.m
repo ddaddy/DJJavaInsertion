@@ -118,7 +118,14 @@ static int _alertCallbackId;
         }
         
         UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-        [window.rootViewController presentViewController:alertController animated:YES completion:nil];
+        if (window.rootViewController.presentedViewController)
+        {
+            [window.rootViewController.presentedViewController presentViewController:alertController animated:YES completion:nil];
+        }
+        else
+        {
+            [window.rootViewController presentViewController:alertController animated:YES completion:nil];
+        }
     }
     else
     {
