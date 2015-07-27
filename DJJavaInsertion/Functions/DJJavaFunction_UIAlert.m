@@ -24,9 +24,8 @@ static int _alertCallbackId;
     
     if ([args count]!=4)
     {
-        NSString *errorStr = [NSString stringWithFormat:@"ERROR:%@-Invalid number of arguments", [self functionName]];
-        
-        [func returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[errorStr]];
+        NSString *error = [self errorWithDescription:@"Invalid number of arguments" functionName:[self functionName] code:9991];
+        [func returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[error]];
         
         return nil;
     }
@@ -70,7 +69,8 @@ static int _alertCallbackId;
 {
     if (buttons.count == 0)
     {
-        [self returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[@"ERROR:No buttons to display on alert"]];
+        NSString *error = [DJJavaFunction errorWithDescription:@"No buttons to display on alert" functionName:[DJJavaFunction_UIAlert functionName] code:9992];
+        [self returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[error]];
         return;
     }
     

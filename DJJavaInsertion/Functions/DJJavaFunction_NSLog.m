@@ -22,9 +22,9 @@
     
     if ([args count] != 1)
     {
-        NSString *errorStr = [NSString stringWithFormat:@"ERROR:%@-Invalid number of arguments", [self functionName]];
+        NSString *error = [self errorWithDescription:@"Invalid number of arguments" functionName:[self functionName] code:9991];
         
-        [func returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[errorStr]];
+        [func returnResult:callbackId reason:DJJavaInsertionCompleted_FunctionComplete args:@[error]];
         
         return nil;
     }

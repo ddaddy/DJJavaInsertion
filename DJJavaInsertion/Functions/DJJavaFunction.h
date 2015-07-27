@@ -30,6 +30,8 @@ typedef enum DJJavaInsertionCompletedReason : NSUInteger
 
 + (instancetype)processFunctionWithArgs:(NSArray *)args callbackId:(int)callbackId delegate:(id<DJJavaFunctionDelegate>)delegate;
 
++ (NSString *)errorWithDescription:(NSString *)errorDescription functionName:(NSString *)functionName code:(NSInteger)code;
+
 #pragma mark - Private
 
 /**

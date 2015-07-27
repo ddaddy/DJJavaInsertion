@@ -25,6 +25,11 @@
     return nil;
 }
 
++ (NSString *)errorWithDescription:(NSString *)errorDescription functionName:(NSString *)functionName code:(NSInteger)code
+{
+    return [NSString stringWithFormat:@"ERROR:%@-%@ CODE:%li", functionName, errorDescription, (long)code];
+}
+
 - (void)returnResult:(int)callbackId
               reason:(DJJavaInsertionCompletedReason)reason
                 args:(NSArray *)args
